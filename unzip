@@ -1,0 +1,22 @@
+#!/bin/bash
+if ! (dpkg -s unzip 2&>1 > /dev/null); then
+    echo "Install unzip first"
+    echo "sudo apt update; sudo apt install unzip"
+    exit 1
+fi
+if [ $# != 1 ]; then
+    echo "usage: ./unzip # where # is the week number"
+    exit 1
+fi
+if [ ! -d feedback/$week ]; then
+    mkdir -p feedback/$week
+fi
+
+week="week$1"
+folder=students/$week/
+find $folder -name *.zip | while read i; do
+    rm src/$week/*
+    unzip $i -d src/$week/
+    feedback=${i%%\.zip}
+    ./test $1 > feedback/$week/${feedback##$folder}
+done
