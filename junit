@@ -1,0 +1,13 @@
+#!/bin/bash
+if [ $# != 1 ]; then
+    echo "usage: $0 # where # is the week number"
+    exit 1
+fi
+
+week=week$1
+folder=tests/$week/
+files=$(find $folder -name "*.java" | while read i; do echo -n "${i##$folder} "; done)
+files=${files//\.java}
+# Compile and test java files
+javac -cp "src/$week:lib/*" tests/$week/*.java
+java -cp "src/$week:tests/$week:lib/*" org.junit.runner.JUnitCore $files

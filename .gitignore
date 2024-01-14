@@ -1,5 +1,4 @@
-*.java
-*.zip
 students/*
+feedback/*
+src/*
 *.class
-!tests/*/*.java

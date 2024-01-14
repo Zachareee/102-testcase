@@ -1,37 +1,16 @@
 #!/bin/bash
 if [ $# != 1 ]; then
-    echo "usage: ./test # where # is the week number"
+    echo "usage: $0 # where # is the week number"
     exit 1
 fi
 
 week="week$1"
-files=
-folder=tests/$week/
-files=$(find $folder -name "*.java" | while read i; do echo -n "${i##$folder} "; done)
-files=${files//\.java}
 
-# Compile java files
+# Compile class files
 javac -cp src/$week/*.java
-javac -cp "src/$week:lib/*" tests/$week/*.java
 
 # Test java files
-java -cp "src/$week:tests/$week:lib/*" org.junit.runner.JUnitCore $files
+bash junit $1
 
 # Test txt files
-files=$(find $folder -name "*.txt" | while read i; do echo -n "$i "; done)
-output=
-for i in $files; do
-    while read line; do
-        if [ ${line::1} = i ]; then
-            src=${i##$folder}
-            src=${src%%Test\.txt}
-            output=$(echo -e "${line:1}" | java -cp src/$week $src)
-        elif [ ${line::1} = e ]; then
-            if [ "$output" != "$(echo -e "${line:1}" | tr -d '\r')" ]; then
-                echo "Failed"
-                echo "Expected: $(echo "${line:1}")"
-                echo "Actual  : $output"
-            fi
-        fi
-    done < $i
-done
+bash std $1
