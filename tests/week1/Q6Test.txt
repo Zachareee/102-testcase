@@ -1,0 +1,16 @@
+iHija\\nBye
+eEnter the first string:Enter the second string:\\nNo alignment can be found.
+iLongerstring\\n 
+eEnter the first string:Enter the second string:\\nNo alignment can be found.
+iHi there\\nieea
+eEnter the first string:Enter the second string:\\nNo alignment can be found.
+iHi there\\ni e 
+eEnter the first string:Enter the second string:\\nNo alignment can be found.
+idonkey string\\n nf
+eEnter the first string:Enter the second string:\\nNo alignment can be found.
+ia really long string\\na ayl stg
+eEnter the first string:Enter the second string:\\na really long string\\na   a  y l    st   g\\nThere is an alignment as shown above.
+ieeeeeeeeeee\\neeeee
+eEnter the first string:Enter the second string:\\neeeeeeeeeee\\neeeee\\nThere is an alignment as shown above.
+iaeiouaeiou\\naiueio
+eEnter the first string:Enter the second string:\\naeiouaeiou\\na i u eio\\nThere is an alignment as shown above.

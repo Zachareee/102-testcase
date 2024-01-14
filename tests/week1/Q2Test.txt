@@ -1,4 +1,4 @@
 ihello\\nHi\\nbye\\nbook\\n
-eEnter first word:Enter second word:try again\\n\\nEnter first word:Enter second word:Bingo
+eEnter first word:Enter second word:try again\\n\\nEnter first word:Enter second word:bingo
 ih\\nh\\n
-eEnter first word:Enter second word:Bingo
+eEnter first word:Enter second word:bingo

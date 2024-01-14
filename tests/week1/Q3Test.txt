@@ -1,0 +1,10 @@
+iHello
+eEnter sentence:Hello
+i
+eEnter sentence:
+iI am am I
+eEnter sentence:I am am I
+iYou are so smart Ben
+eEnter sentence:Ben smart so are You
+iPunctuation. check, nice!
+eEnter sentence:nice! check, Punctuation.

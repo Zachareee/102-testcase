@@ -20,12 +20,12 @@ for i in $files; do
         elif [ ${line::1} = e ]; then
             ((testno++))
             if [ "$output" != "$(echo -e "${line:1}" | tr -d '\r')" ]; then
+                echo ==========================
                 echo "Failed test number: $testno"
                 echo "Expected: $(echo -e "${line:1}")"
                 echo "Actual  : $output"
                 ((failed++))
             fi
-            echo ==========================
         fi
     done < "$i"
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>"
