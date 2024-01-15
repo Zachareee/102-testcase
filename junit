@@ -9,5 +9,5 @@ folder=tests/$week/
 files=$(find $folder -name "*.java" | while read i; do echo -n "${i##$folder} "; done)
 files=${files//\.java}
 # Compile and test java files
-javac -cp "src/$week:lib/*" tests/$week/*.java
-java -cp "src/$week:tests/$week:lib/*" org.junit.runner.JUnitCore $files
+javac -cp "src:lib/*" $folder*.java
+java -cp "src:$folder:lib/*" org.junit.runner.JUnitCore $files

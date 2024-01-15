@@ -1,8 +1,21 @@
 import static org.junit.Assert.*;
 
-import org.junit.Test;
+import java.lang.invoke.MethodHandles;
+
+import org.junit.*;
 
 public class Q1Test {
+    @BeforeClass
+    public static void testAll() {
+        try {
+            String classname = MethodHandles.lookup().lookupClass()
+                    .getName().replaceAll("Test", "");
+            Class.forName(classname);
+        } catch (ClassNotFoundException e) {
+            Assert.fail(e.getLocalizedMessage() + ".class not found (Compile failed?)");
+        }
+    }
+
     @Test
     public void input0() {
         int actual = Q1.sumOfDigits(0);

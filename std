@@ -16,7 +16,12 @@ for i in $files; do
         if [ ${line::1} = i ]; then
             src=${i##$folder}
             src=${src%%Test\.txt}
-            output=$(echo -e "${line:1}" | java -cp src/$week $src)
+            output=$(echo -e "${line:1}" | java -cp src $src 2>&1)
+            if [ ${output::6} = "Error:" ]; then 
+                ((failed++))
+                echo "$output"
+                break
+            fi
         elif [ ${line::1} = e ]; then
             ((testno++))
             if [ "$output" != "$(echo -e "${line:1}" | tr -d '\r')" ]; then

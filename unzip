@@ -11,16 +11,16 @@ fi
 
 week="week$1"
 [ -d feedback/$week ] || mkdir -p feedback/$week
-[ -d src/$week ] || mkdir -p src/$week
+[ -d src ] || mkdir -p src
 
 folder=students/$week/
 find $folder -name *.zip | while read i; do
-    rm -rf src/$week/*
-    unzip $i -d src/$week/
-    cd src/$week
+    rm -rf src/*
+    unzip $i -d src
+    cd src
     rm -rf __MACOSX
     find -maxdepth 1 -name "*.java" | grep -q "." || mv -f */* .
-    cd ../..
+    cd ..
     feedback=${i%%\.zip}
     bash test $1 > feedback/$week/${feedback##$folder}.txt
 done

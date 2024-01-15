@@ -4,10 +4,10 @@ if [ $# != 1 ]; then
     exit 1
 fi
 
-week="week$1"
-
 # Compile class files
-javac -cp src/$week/*.java
+find src -name *.java | while read i; do
+    javac $i
+done
 
 # Test java files
 bash junit $1
