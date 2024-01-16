@@ -16,11 +16,11 @@ week="week$1"
 folder=students/$week/
 find $folder -name *.zip | while read i; do
     rm -rf src/*
-    unzip $i -d src
+    unzip "$i" -d src
     cd src
     rm -rf __MACOSX
     find -maxdepth 1 -name "*.java" | grep -q "." || mv -f */* .
     cd ..
     feedback=${i%%\.zip}
-    bash test $1 > feedback/$week/${feedback##$folder}.txt
+    bash test $1 > "feedback/$week/${feedback##$folder}.txt"
 done
