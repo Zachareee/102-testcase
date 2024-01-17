@@ -8,9 +8,10 @@ week="week$1"
 folder=tests/$week/
 files=$(find $folder -name "*.txt" | while read i; do echo -n "$i "; done)
 output=
-testno=0
+total=0
 failed=0
 for i in $files; do
+    testno=0
     echo "Running ${i##$folder}"
     while read line || [ -n "$line" ]; do
         if [ ${line::1} = i ]; then
@@ -23,6 +24,7 @@ for i in $files; do
                 break
             fi
         elif [ ${line::1} = e ]; then
+            ((total++))
             ((testno++))
             if [ "$output" != "$(echo -e "${line:1}" | tr -d '\r')" ]; then
                 echo ==========================
@@ -35,4 +37,4 @@ for i in $files; do
     done < "$i"
     echo ">>>>>>>>>>>>>>>>>>>>>>>>>>"
 done
-echo "Tests run: $testno,  Failures: $failed"
+echo "Tests run: $total,  Failures: $failed"
