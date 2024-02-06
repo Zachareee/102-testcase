@@ -14,3 +14,6 @@ bash junit $1
 
 # Test txt files
 bash std $1
+
+# Test compile.bat and run.bat
+bash compilerun
