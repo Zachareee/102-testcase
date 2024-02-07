@@ -2,7 +2,10 @@
 cd src
 ls -d */ | while read i; do (
     cd "$i"
-    bash compile.bat || { echo "Compile failed $i"; exit; }
-    bash run.bat || echo "Run failed $i"
+    echo "Running $i"
+    dos2unix compile.bat run.bat
+    command=$(cat compile.bat) eval 'bash -c "${command//;/:}"' 2>&1 || { echo "Compile failed $i"; exit; }
+    command=$(cat run.bat) eval 'bash -c "${command//;/:}"' 2>&1 || echo "Run failed $i"
+    echo 
 )
 done
