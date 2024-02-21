@@ -9,6 +9,8 @@ if [ $# != 1 ]; then
     exit 1
 fi
 
+echo -n "Enter any filename which is in the home directory: "
+read homefile
 week="week$1"
 [ -d feedback/$week ] || mkdir -p feedback/$week
 [ -d src ] || mkdir -p src
@@ -19,7 +21,7 @@ find $folder -name *.zip | while read i; do
     unzip "$i" -d src
     cd src
     rm -rf __MACOSX
-    find -maxdepth 1 -name "*.java" | grep -q "." || mv -f */* .
+    [ -e $homefile ] || mv -f */* .
     cd ..
     feedback=${i%%\.zip}
     bash test $1 > "feedback/$week/${feedback##$folder}.txt"
